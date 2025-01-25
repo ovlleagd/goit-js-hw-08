@@ -1,11 +1,10 @@
 const images = [
     {
       preview:
-        'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
+        'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__340.jpg',
       original:
         'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg',
       description: 'Hokkaido Flower',
-      id: 1,
     },
     {
       preview:
@@ -13,7 +12,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
       description: 'Container Haulage Freight',
-      id: 2,
     },
     {
       preview:
@@ -21,7 +19,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
       description: 'Aerial Beach View',
-      id: 3,
     },
     {
       preview:
@@ -29,7 +26,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
       description: 'Flower Blooms',
-      id: 4,
     },
     {
       preview:
@@ -37,7 +33,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334_1280.jpg',
       description: 'Alpine Mountains',
-      id: 5,
     },
     {
       preview:
@@ -45,7 +40,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571_1280.jpg',
       description: 'Mountain Lake Sailing',
-      id: 6,
     },
     {
       preview:
@@ -53,7 +47,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg',
       description: 'Alpine Spring Meadows',
-      id: 7,
     },
     {
       preview:
@@ -61,7 +54,6 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
       description: 'Nature Landscape',
-      id: 8,
     },
     {
       preview:
@@ -69,14 +61,13 @@ const images = [
       original:
         'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',
       description: 'Lighthouse Coast Sea',
-      id: 9,
     },
   ];
 
   const container = document.querySelector('.gallery');
 
   function imageTemplate(item) {
-    return ` <li class="gallery-item" data-id="${item.id}">
+    return ` <li class="gallery-item" data-alt="${item.description}">
         <a class="gallery-link" href="${item.original}">
           <img
             class="gallery-image"
@@ -100,12 +91,17 @@ container.addEventListener('click', e => {
     if (e.target === e.currentTarget) return;
     const liElem = e.target.closest('li');
     if (!liElem) return;
-    const id = +liElem.dataset.id;
-    const image = images.find(el => el.id === id); 
-    showModal();
+    const description = liElem.dataset.alt;
+    const image = images.find(el => el.description === description); 
+    showModal(image);
 });
- function showModal() {
-  const markup = '<div class="modal">Hello world</div>';
+ function showModal(item) {
+  const markup = `<div class="modal item"><img
+            class="gallery-image"
+            src="${item.original}"
+            data-source="${item.original}"
+            alt="${item.description}"
+          /></div>`;
   const modal = basicLightbox.create(markup);
   modal.show();
  };

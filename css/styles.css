@@ -8,11 +8,13 @@
    margin-left: auto;
    margin-right: auto;
    padding-left: 0;
+   width: 2000px;
    }
 
 .gallery-image {
-   width: 580px;
-   height: 365px;
    cursor: pointer;
-   
-}
+   }
+
+  .modal-item {
+width: 1280px;
+  } 
