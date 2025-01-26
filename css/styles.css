@@ -1,7 +1,5 @@
 .gallery {
    display: flex;
-   justify-content:center;
-   align-items: center;
    flex-wrap: wrap;
    list-style: none;
    gap: 24px;
@@ -16,6 +14,9 @@
    height: 200px;
    }
 
-  .modal-item {
-width: 1280px;
-  } 
+  .container {
+   margin-top: 260px;
+   margin-left: auto;
+   margin-right: auto;
+   width: 1128px;
+  }
