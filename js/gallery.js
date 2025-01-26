@@ -82,25 +82,20 @@ const images = [
     return items.map(imageTemplate).join('');
   };
 const markup = imagesTemplate(images);
-container.innerHTML = markup;
-
 const gallery = document.querySelector('.gallery');
-gallery.addEventListener('click', (e) => {e.preventDefault();});
+gallery.innerHTML = markup;
 
-container.addEventListener('click', e => {
-    if (e.target === e.currentTarget) return;
-    const liElem = e.target.closest('li');
-    if (!liElem) return;
-    const description = liElem.dataset.alt;
-    const image = images.find(el => el.description === description); 
-    showModal(image);
-});
- function showModal(item) {
+
+gallery.addEventListener('click',
+     showModal
+);
+ function showModal(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") return;
   const markup = `<div class="modal item"><img
-            class="gallery-image"
-            src="${item.original}"
-            data-source="${item.original}"
-            alt="${item.description}"
+            class="gallery-image#"
+            src="${event.target.dataset.source}"
+            alt="${event.target.alt}"
           /></div>`;
   const modal = basicLightbox.create(markup);
   modal.show();
